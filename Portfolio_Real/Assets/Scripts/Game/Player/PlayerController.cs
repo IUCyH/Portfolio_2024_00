@@ -7,14 +7,24 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     PlayerMove playerMove;
+    [SerializeField]
+    PlayerJump playerJump;
 
+    float horizontalDir;
     bool isLeftKeyDown;
     bool isRightKeyDown;
 
     void Update()
     {
-        var horizontalDir = GetHorizontalKey();
-        
+        horizontalDir = GetHorizontalKey();
+        if (InputManager.GetKeyDown(InputKeys.Jump))
+        {
+            playerJump.Jump();
+        }
+    }
+
+    void FixedUpdate()
+    {
         playerMove.Move(horizontalDir);
     }
 

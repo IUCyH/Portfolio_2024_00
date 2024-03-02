@@ -11,3 +11,5 @@ X
 .Assets/Scripts/Game/Player/PlayerController.cs,4\e\4e55993f9c8fb81ee9a6979005bfb5ed3d093c4d
 S
 #Assets/Scripts/Util/InputManager.cs,f\1\f1cebc84712adbf05f663f86eb20c220a41f5bfb
+X
+(Assets/Scripts/Game/Player/PlayerJump.cs,d\d\dd0bbcf8651222a515fb56779a58ce87f8f1f03a
