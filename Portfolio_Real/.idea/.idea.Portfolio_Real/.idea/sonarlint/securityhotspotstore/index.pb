@@ -13,3 +13,11 @@ S
 #Assets/Scripts/Util/InputManager.cs,f\1\f1cebc84712adbf05f663f86eb20c220a41f5bfb
 X
 (Assets/Scripts/Game/Player/PlayerJump.cs,d\d\dd0bbcf8651222a515fb56779a58ce87f8f1f03a
+_
+/Assets/Scripts/Game/Manager/AnimationManager.cs,5\5\5597140f89b212da5e1432fb29ea132ee0002629
+`
+0Assets/Scripts/Game/Manager/PlayerAnimManager.cs,b\8\b87d858c88cde31f972a51754c51d2e52cc7f52e
+h
+8Assets/Scripts/Game/Manager/PlayerAnimationController.cs,1\d\1d3bd4eb44beff5a694f3bb7e582aa997e4d3d57
+b
+2Assets/Scripts/Game/Manager/AnimationManagement.cs,e\3\e30dfc52859fb05578f5dab5901528eabaf7ee95

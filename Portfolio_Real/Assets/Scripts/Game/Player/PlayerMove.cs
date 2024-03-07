@@ -5,23 +5,26 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField]
-    float maxSpeed;
+    PlayerController playerController;
     [SerializeField]
     float walkSpeed;
-    [SerializeField]
-    float runSpeed;
-    float currSpeed;
 
     void Start()
     {
-        currSpeed = walkSpeed;
+        playerController = GetComponent<PlayerController>();
     }
 
     public void Move(float dir)
     {
         var nextVector = Vector3.right * dir;
 
-        transform.position += currSpeed * Time.deltaTime * nextVector;
+        transform.position += walkSpeed * Time.deltaTime * nextVector;
+    }
+
+    public void ChangeToMoveState(float dir)
+    {
+        if (Mathf.Approximately(dir, 0f)) return;
+     
+        playerController.ChangeStateAndPlayAnimation(PlayerState.Move);
     }
 }

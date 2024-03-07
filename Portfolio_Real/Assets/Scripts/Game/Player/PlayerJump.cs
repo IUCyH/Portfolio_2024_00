@@ -5,54 +5,63 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField]
-    Transform feetPos;
+    
+    PlayerController playerController;
     
     [SerializeField]
     float jumpForce;
     float currJumpForce;
     [SerializeField]
     float jumpDecreaseValue;
-    [SerializeField]
-    float radiusOfCircleDetectingGround;
     bool jump;
-
+    
     void Start()
     {
+        playerController = GetComponent<PlayerController>();
         StartCoroutine(Coroutine_Update());
     }
 
     IEnumerator Coroutine_Update()
     {
+        bool isPlayedJumpAnim = false;
+        
         while (true)
         {
             if (jump)
             {
                 transform.position += new Vector3(0f, currJumpForce * Time.deltaTime, 0f);
                 currJumpForce -= jumpDecreaseValue;
-                
+
                 if (Mathf.Approximately(currJumpForce, 0f) || currJumpForce < 0f)
                 {
+                    isPlayedJumpAnim = false;
                     jump = false;
+                    playerController.ChangeStateAndPlayAnimation(PlayerState.JumpEnd);
+                }
+
+                if (!isPlayedJumpAnim)
+                {
+                    isPlayedJumpAnim = true;
+                    playerController.ChangeStateAndPlayAnimation(PlayerState.OnAir);
                 }
             }
-            
+
             yield return null;
         }
     }
-    
-    public void Jump()
+
+    public void ChangeToJumpState()
     {
-        if (!CanJump()) return;
+        if (!jump) return;
+        
+        playerController.ChangeStateAndPlayAnimation(PlayerState.JumpStart);
+    }
+    
+    public void Jump(bool jumpKeyDown)
+    {
+        if (!jumpKeyDown || !playerController.OnGround()) return;
 
         currJumpForce = jumpForce;
         jump = true;
-    }
-
-    bool CanJump()
-    {
-        var detectedCollider = Physics2D.OverlapCircle(feetPos.position, radiusOfCircleDetectingGround, 1 << LayerMask.NameToLayer("Ground"));
-
-        return !ReferenceEquals(detectedCollider, null);
     }
 }
