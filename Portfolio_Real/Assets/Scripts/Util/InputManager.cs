@@ -9,6 +9,7 @@ public enum InputKeys
     Right,
     Up,
     Jump,
+    Dash,
     Max
 }
 
@@ -23,7 +24,8 @@ public static class InputManager
             { InputKeys.Left, KeyCode.A },
             { InputKeys.Right, KeyCode.D },
             { InputKeys.Up, KeyCode.W },
-            { InputKeys.Jump, KeyCode.Space }
+            { InputKeys.Jump, KeyCode.Space },
+            { InputKeys.Dash, KeyCode.LeftShift }
         };
     }
 

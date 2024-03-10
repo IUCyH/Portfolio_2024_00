@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 {
     PlayerAnimationController playerAnimCtr;
     [SerializeField]
+    PlayerSkill playerSkill;
+    [SerializeField]
     PlayerMove playerMove;
     [SerializeField]
     PlayerJump playerJump;
@@ -43,6 +45,10 @@ public class PlayerController : MonoBehaviour
         
         playerJump.Jump(InputManager.GetKeyDown(InputKeys.Jump));
         playerJump.ChangeToJumpState();
+        
+        playerSkill.CheckAnySkillKeyDown();
+        playerSkill.ExecuteSkill();
+        playerSkill.CalculateSKillCoolDowns();
         
         ChangeToIdleIfOnGround();
     }
