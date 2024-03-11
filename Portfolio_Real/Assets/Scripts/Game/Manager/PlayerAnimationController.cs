@@ -9,7 +9,8 @@ public enum PlayerMotion
     Move,
     Jump,
     OnAir,
-    JumpEnd
+    JumpEnd,
+    DefaultAttack
 }
 
 public class PlayerAnimationController : AnimationManagement
@@ -34,5 +35,10 @@ public class PlayerAnimationController : AnimationManagement
     public void Play(PlayerMotion motion)
     {
         base.PlayWithTrigger(animationIDs[(int)motion]);
+    }
+
+    public float GetAnimationPlayTime(PlayerMotion motion)
+    {
+        return GetAnimationPlayTime(motion.ToString());
     }
 }

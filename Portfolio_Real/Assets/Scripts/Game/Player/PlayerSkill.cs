@@ -20,16 +20,17 @@ public class PlayerSkill : MonoBehaviour
 
     public void CheckAnySkillKeyDown()
     {
-        if (skillIDWillExecute != NoUsingSkill && !skills[skillIDWillExecute].EndUseSkill) return;
-
+        bool cannotGetInput = skillIDWillExecute != NoUsingSkill && !skills[skillIDWillExecute].EndUseSkill;
+        if (cannotGetInput) return;
+        
         skillIDWillExecute = NoUsingSkill;
         foreach (var skill in skills)
         {
             if (InputManager.GetKeyDown(skill.SkillKey) && skill.CanUse)
             {
                 skill.CanUse = false;
-                skillIDWillExecute = skill.ID;
                 
+                skillIDWillExecute = skill.ID;
                 executeSkill = true;
                 
                 break;

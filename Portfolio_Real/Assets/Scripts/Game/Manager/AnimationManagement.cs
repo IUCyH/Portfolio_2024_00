@@ -18,4 +18,21 @@ public abstract class AnimationManagement
 
         prevAnim = animID;
     }
+
+    protected float GetAnimationPlayTime(string animName)
+    {
+        var runtimeAnimCtr = animator.runtimeAnimatorController;
+        var length = runtimeAnimCtr.animationClips.Length;
+        var playTime = 0f;
+        
+        for (int i = 0; i < length; i++)
+        {
+            if (runtimeAnimCtr.animationClips[i].name == animName)
+            {
+                playTime = runtimeAnimCtr.animationClips[i].length;
+            }
+        }
+
+        return playTime;
+    }
 }

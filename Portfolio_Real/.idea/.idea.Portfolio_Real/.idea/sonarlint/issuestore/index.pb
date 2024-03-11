@@ -17,11 +17,11 @@ h
 8Assets/Scripts/Game/Manager/PlayerAnimationController.cs,1\d\1d3bd4eb44beff5a694f3bb7e582aa997e4d3d57
 b
 2Assets/Scripts/Game/Manager/AnimationManagement.cs,e\3\e30dfc52859fb05578f5dab5901528eabaf7ee95
-T
-$Assets/Scripts/Game/Player/ISkill.cs,2\c\2ce1c75fd553bf6ef113206ce6963228d862460e
 X
 (Assets/Scripts/Game/Player/Skill/Dash.cs,4\0\406d6625bd4a5e0cf4209b0d8b4ae1882b774d9a
 Z
 *Assets/Scripts/Game/Player/Skill/ISkill.cs,a\a\aab54e355fca346be79b06353bd19b4a7043e88e
 Y
 )Assets/Scripts/Game/Player/PlayerSkill.cs,6\1\61c7aebb996f5c43701d152221cfcb6a62dc9ed0
+a
+1Assets/Scripts/Game/Player/Skill/DefaultAttack.cs,4\b\4b41ff11be5533eabf5856a8a9b529cedb13e2cb

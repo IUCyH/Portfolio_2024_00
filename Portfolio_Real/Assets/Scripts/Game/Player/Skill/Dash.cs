@@ -59,6 +59,7 @@ public class Dash : MonoBehaviour, ISkill
 
         targetPos.x = targetX;
         dash = true;
+        EndUseSkill = false;
     }
 
     public bool CalculateCoolDown()

@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 84652481}
   - component: {fileID: 84652482}
+  - component: {fileID: 84652483}
   m_Layer: 8
   m_Name: Skills
   m_TagString: Untagged
@@ -171,6 +172,19 @@ MonoBehaviour:
   coolDown: 1
   maxDashDistance: 5
   speed: 20
+--- !u!114 &84652483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84652480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48fc27f20c81844eb624a98473ace8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 212310411199218661}
 --- !u!1 &369538601
 GameObject:
   m_ObjectHideFlags: 0

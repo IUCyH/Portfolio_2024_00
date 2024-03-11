@@ -10,7 +10,8 @@ public enum PlayerState
     Move,
     JumpStart,
     OnAir,
-    JumpEnd
+    JumpEnd,
+    DefaultAttack
 }
 
 public class PlayerController : MonoBehaviour
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     Transform feetPos;
     
     PlayerState currentState;
+    short skillStateFlag;
     int groundLayer;
     [SerializeField]
     float radiusOfCircleDetectingGround;
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour
     bool isLeftKeyDown;
     bool isRightKeyDown;
 
-    void Start()
+    void Awake()
     {
         playerAnimCtr = new PlayerAnimationController(GetComponent<Animator>());
         groundLayer = 1 << LayerMask.NameToLayer("Ground");
@@ -59,6 +61,16 @@ public class PlayerController : MonoBehaviour
         playerMove.ChangeToMoveState(horizontalDir);
         SetPlayerForward();
     }
+
+    public void SetSkillStateFlagBit(PlayerState state)
+    {
+        skillStateFlag |= (short)(1 << (int)state);
+    }
+
+    public void DeleteSkillStateFlagBit(PlayerState state)
+    {
+        skillStateFlag ^= (short)(1 << (int)state);
+    }
     
     public bool OnGround()
     {
@@ -67,9 +79,14 @@ public class PlayerController : MonoBehaviour
         return !ReferenceEquals(detectedCollider, null);
     }
 
+    public float GetAnimationPlayTime(PlayerMotion motion)
+    {
+        return playerAnimCtr.GetAnimationPlayTime(motion);
+    }
+
     public void ChangeStateAndPlayAnimation(PlayerState state)
     {
-        if (currentState == state) return;
+        if (currentState == state || (skillStateFlag & (short)(1 << (int)currentState)) != 0) return;
         
         currentState = state;
         
@@ -128,6 +145,10 @@ public class PlayerController : MonoBehaviour
             case PlayerState.JumpEnd:
                 playerAnimCtr.Play(PlayerMotion.JumpEnd);
                 break;
+            
+            case PlayerState.DefaultAttack:
+                playerAnimCtr.Play(PlayerMotion.DefaultAttack);
+                break;
         }
     }
 
@@ -143,7 +164,9 @@ public class PlayerController : MonoBehaviour
 
     void ChangeToIdleIfOnGround()
     {
-        if (!OnGround() || !Mathf.Approximately(horizontalDir, 0f)) return;
+        bool isMoving = !Mathf.Approximately(horizontalDir, 0f);
+        
+        if (!OnGround() || isMoving) return;
         
         ChangeStateAndPlayAnimation(PlayerState.OnGround);
     }
